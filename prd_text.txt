@@ -1,0 +1,119 @@
+ForgeCI – Product Requirements Document (PRD)
+1. Product Overview
+ForgeCI is a Continuous Integration and Continuous Delivery (CI/CD) automation platform designed
+to streamline software development workflows. The system automates code building, testing, and
+deployment processes triggered by source code changes.
+ForgeCI functions similarly to Jenkins, enabling developers and teams to integrate their code
+frequently and automatically validate builds through pipelines.
+The platform integrates with version control systems such as GitHub and GitLab, allowing pipelines
+to automatically trigger whenever developers push code to repositories. ForgeCI provides a web
+dashboard where users can create pipelines, monitor build progress, analyze logs, and manage
+deployments.
+2. Problem Statement
+Modern software development teams release updates frequently. Manual processes for building,
+testing, and deploying applications are time consuming, error prone, and inefficient for large teams.
+Without automation developers spend significant time managing builds, integration errors increase,
+and deployment delays occur. ForgeCI solves these problems by providing automated pipelines
+that trigger whenever code changes are pushed to a repository.
+3. Product Vision
+The vision of ForgeCI is to provide a simple, scalable, and developer-friendly CI/CD automation
+platform that reduces manual effort and accelerates the software delivery lifecycle.
+ForgeCI aims to automate build and test processes, ensure continuous integration of code, provide
+fast feedback to developers, and support scalable deployment workflows.
+4. Target Users
+Software Developers – Automatically build and test code after commits.
+DevOps Engineers – Configure pipelines and deployment workflows.
+Project Teams – Monitor builds and delivery pipelines.
+Students and Learners – Use the platform to understand CI/CD automation.
+5. Goals and Objectives
+Primary Goals:
+ Automate software build processes
+ Integrate continuous testing pipelines
+ Enable automated deployment
+
+ Provide real-time monitoring of pipelines
+Secondary Goals:
+ Provide a user-friendly web interface
+ Store build logs and pipeline history
+ Integrate with Git-based repositories
+6. System Architecture
+ForgeCI follows a modular architecture consisting of multiple components:
+ Web Dashboard (Frontend)
+ Backend API Server
+ Pipeline Execution Engine
+ Worker Agents
+ Database Storage
+ Integration Services
+Architecture Flow:
+Developer pushes code → Repository webhook triggers ForgeCI → Pipeline engine processes
+configuration → Worker agent executes tasks → Logs stored in database → Dashboard displays
+results.
+7. Technology Stack
+Frontend:
+ React.js
+ HTML / CSS / JavaScript
+Backend:
+ Node.js (Express)
+Database:
+ PostgreSQL
+DevOps Tools:
+ Git
+ Docker
+8. Core Features
+User Authentication:
+Secure login and registration using encrypted password storage and JWT authentication.
+Project Management:
+Users can create projects, connect Git repositories, and configure pipelines.
+
+Pipeline Creation:
+Users define pipelines with stages such as Build, Test, and Deploy.
+Webhook Integration:
+Pipelines automatically trigger when developers push code to repositories.
+Pipeline Execution Engine:
+Schedules and manages execution of jobs.
+Worker Agents:
+Execute build, test, and deployment commands.
+Monitoring Dashboard:
+Displays build history, logs, pipeline status, and execution results.
+9. Database Design
+ForgeCI stores data in PostgreSQL.
+Key tables include:
+ Users (user_id, name, email, password_hash, created_at)
+ Projects (project_id, user_id, repository_url, project_name)
+ Pipelines (pipeline_id, project_id, trigger_type, status)
+ Jobs (job_id, pipeline_id, stage_name, job_status, execution_logs)
+10. Data Storage and Logging
+The system stores user accounts, repository information, pipeline configurations, job execution
+logs, and build history. Logs help developers debug and identify failed pipeline stages.
+11. Security Considerations
+ Encrypted password storage
+ Token-based authentication
+ Role-based access control
+ Secure webhook validation
+ Input validation and sanitization
+12. Unique Feature – AI Failure Analysis
+ForgeCI includes an AI-assisted pipeline log analysis feature. When a pipeline fails, the system
+analyzes logs and suggests possible solutions such as installing missing dependencies, correcting
+configuration errors, or reviewing failing test cases.
+13. Non-Functional Requirements
+
+Performance – Pipelines should execute efficiently.
+Scalability – Support multiple pipelines simultaneously.
+Reliability – Pipeline execution history must be stored and recoverable.
+Availability – System should maintain high uptime.
+14. Success Metrics
+ Successful pipeline execution rate
+ Reduction in manual build processes
+ Developer adoption rate
+ Pipeline execution performance improvements
+15. Future Enhancements
+ Distributed build agents
+ Kubernetes deployment support
+ Plugin ecosystem
+ Advanced pipeline visualization
+ AI-assisted DevOps recommendations
+16. Conclusion
+ForgeCI simplifies the software development lifecycle by automating build, testing, and deployment
+processes. By integrating with Git repositories and providing scalable pipeline automation, ForgeCI
+enables teams to deliver software faster and more reliably.
+
