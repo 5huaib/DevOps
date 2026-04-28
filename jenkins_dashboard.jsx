@@ -960,11 +960,11 @@ export default function App() {
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, flex: 1 }}>
           <div style={{ width: 28, height: 28, background: "#1d4ed8", borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <span style={{ fontSize: 14 }}>⚙</span>
+            <span style={{ fontSize: 14 }}>⚡</span>
           </div>
           <div>
-            <div style={{ fontSize: 13, color: "#e2e8f0", letterSpacing: "0.05em" }}>mini-jenkins</div>
-            <div style={{ fontSize: 9, color: "#334155", letterSpacing: "0.1em" }}>JOB SCHEDULER · PIPELINE ENGINE</div>
+            <div style={{ fontSize: 13, color: "#e2e8f0", letterSpacing: "0.05em" }}>PipelineX</div>
+            <div style={{ fontSize: 9, color: "#334155", letterSpacing: "0.1em" }}>CONTINUOUS DEPLOYMENT ENGINE</div>
           </div>
         </div>
 
