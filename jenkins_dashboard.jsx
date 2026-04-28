@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
 // ─── MOCK JENKINSFILES (one per repo) ───────────────────────────────────────
 const JENKINSFILES = {
-  "github.com/sameeermokhasi/forgeCI-frontend": {
+  "github.com/sameeermokhasi/pipelineX-frontend": {
     agent: "node",
     stages: [
       { name: "Install", steps: ["npm ci"], duration: 8000 },
@@ -12,7 +12,7 @@ const JENKINSFILES = {
       { name: "Deploy", steps: ["npm run preview"], duration: 7000 },
     ],
   },
-  "github.com/sameeermokhasi/forgeCI-data": {
+  "github.com/sameeermokhasi/pipelineX-data": {
     agent: "python",
     stages: [
       { name: "Deps", steps: ["pip install pdf2image PyPDF2"], duration: 6000 },
@@ -22,7 +22,7 @@ const JENKINSFILES = {
       { name: "Deploy", steps: ["python -m PyPDF2"], duration: 6000 },
     ],
   },
-  "github.com/sameeermokhasi/forgeCI-infra": {
+  "github.com/sameeermokhasi/pipelineX-infra": {
     agent: "terraform",
     stages: [
       { name: "Init", steps: ["terraform init"], duration: 5000 },
@@ -31,7 +31,7 @@ const JENKINSFILES = {
       { name: "Apply", steps: ["terraform apply tfplan"], duration: 14000 },
     ],
   },
-  "github.com/sameeermokhasi/forgeCI-backend": {
+  "github.com/sameeermokhasi/pipelineX-backend": {
     agent: "spark",
     stages: [
       { name: "Deps", steps: ["npm install"], duration: 18000 },

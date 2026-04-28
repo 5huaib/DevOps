@@ -1,11 +1,11 @@
-# ✅ Installation Checklist - forgeCI
+# ✅ Installation Checklist - PipelineX
 
 **Installation Date**: April 28, 2026  
 **Status**: ✅ COMPLETE
 
 ---
 
-## 📦 Package Installation Summary
+## 📦 Package Installation SuDATABASE_VITE_APP_NAME="pipelineX"RL="postgresql://user:password@localhost:5432/pipelinex"mary
 
 ### Frontend (React + Vite)
 - ✅ Package Manager: npm
@@ -136,7 +136,7 @@ npm run lint               # Run ESLint
 
 ### Backend (.env)
 ```
-DATABASE_URL="postgresql://user:password@localhost:5432/forgeCI"
+DATABASE_URL="postgresql://user:password@localhost:5432/pipelinex"
 JWT_SECRET="your-secret-key"
 NODE_ENV="development"
 PORT=3000
@@ -145,7 +145,7 @@ PORT=3000
 ### Frontend (.env)
 ```
 VITE_API_URL="http://localhost:3000"
-VITE_APP_NAME="forgeCI"
+VITE_APP_NAME="pipelineX"
 ```
 
 ---
@@ -163,14 +163,14 @@ VITE_APP_NAME="forgeCI"
 
 ## 📊 Jenkins Dashboard Configuration
 
-**forgeCI Repository Pipeline Setup:**
+**PipelineX Repository Pipeline Setup:**
 
 | Repository | Agent | Type | Stages |
 |------------|-------|------|--------|
-| forgeCI-frontend | NODE | React/Vite | Install, Lint, Build, Test, Deploy |
-| forgeCI-data | PY | Python | Deps, Lint, Test, Process, Deploy |
-| forgeCI-infra | TF | Terraform | Init, Validate, Plan, Apply |
-| forgeCI-backend | SPARK | Node.js/Docker | Deps, Build, Test, Deploy |
+| pipelineX-frontend | NODE | React/Vite | Install, Lint, Build, Test, Deploy |
+| pipelineX-data | PY | Python | Deps, Lint, Test, Process, Deploy |
+| pipelineX-infra | TF | Terraform | Init, Validate, Plan, Apply |
+| pipelineX-backend | SPARK | Node.js/Docker | Deps, Build, Test, Deploy |
 
 ---
 
@@ -282,7 +282,7 @@ cd backend && rm -rf node_modules && npm install
 - **Frontend**: See `frontend/README.md`
 - **Backend**: See `backend/README.md`
 - **Setup Guide**: See `SETUP_GUIDE.md`
-- **forgeCI Main**: https://github.com/sameeermokhasi/forgeCI
+- **PipelineX Main**: https://github.com/sameeermokhasi/pipelineX
 
 ---
 

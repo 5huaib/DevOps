@@ -34,7 +34,7 @@
 
 ### Demo Account
 ```
-Email: demo@forgeci.com
+Email: demo@pipelinex.com
 Password: password123
 ```
 

@@ -1,8 +1,22 @@
-# forgeCI - DevOps Dashboard Setup Guide
+# PipelineX - Continuous Deployment Engine Setup Guide
 
 ## ✅ Installation Status
 
-All required packages have been successfully installed!
+All required packages have been succ## 🔧 Environ```
+DATABASE_URL="postgresql://user:password@localhost:5432/pipelinex"
+JWT_SECRET="your-jwt-secret-key"
+NODE_ENV="development"
+PORT=3000
+```etup
+
+### Backend Environment Variables
+Create `.env` file in `/Users/shuaib/DevOps/backend`:
+```
+DATABASE_URL="postgresql://user:password@localhost:5432/pipelinex"
+JWT_SECRET="your-jwt-secret-key"
+NODE_ENV="development"
+PORT=3000
+```ASE_URL="postgresql://user:password@localhost:5432/pipelinex"ly installed!
 
 ### Frontend (React + Vite + TypeScript)
 - **Location**: `/Users/shuaib/DevOps/frontend`
@@ -66,12 +80,12 @@ npm run dev
 # The jenkins_dashboard.jsx component is ready to use in React
 # It includes:
 # - mini-jenkins job scheduler
-# - forgeCI repository pipeline configuration
+# - PipelineX repository pipeline configuration
 # - Repositories:
-#   - github.com/sameeermokhasi/forgeCI-frontend (Node.js)
-#   - github.com/sameeermokhasi/forgeCI-data (Python)
-#   - github.com/sameeermokhasi/forgeCI-infra (Terraform)
-#   - github.com/sameeermokhasi/forgeCI-backend (Spark)
+#   - github.com/sameeermokhasi/pipelineX-frontend (Node.js)
+#   - github.com/sameeermokhasi/pipelineX-data (Python)
+#   - github.com/sameeermokhasi/pipelineX-infra (Terraform)
+#   - github.com/sameeermokhasi/pipelineX-backend (Spark)
 ```
 
 ### 4. Run Python Data Processing Scripts
@@ -180,11 +194,11 @@ The `jenkins_dashboard.jsx` component simulates a Jenkins master dashboard with:
 ---
 
 ## 🔗 Repository Links
-- Frontend: https://github.com/sameeermokhasi/forgeCI-frontend
-- Backend: https://github.com/sameeermokhasi/forgeCI-backend
-- Data Pipeline: https://github.com/sameeermokhasi/forgeCI-data
-- Infrastructure: https://github.com/sameeermokhasi/forgeCI-infra
-- Main: https://github.com/sameeermokhasi/forgeCI
+- Frontend: https://github.com/sameeermokhasi/pipelineX-frontend
+- Backend: https://github.com/sameeermokhasi/pipelineX-backend
+- Data Pipeline: https://github.com/sameeermokhasi/pipelineX-data
+- Infrastructure: https://github.com/sameeermokhasi/pipelineX-infra
+- Main: https://github.com/sameeermokhasi/pipelineX
 
 ---
 
@@ -200,6 +214,6 @@ The `jenkins_dashboard.jsx` component simulates a Jenkins master dashboard with:
 ---
 
 ## 📞 Support
-For issues or questions, refer to the forgeCI documentation or create an issue in the repository.
+For issues or questions, refer to the PipelineX documentation or create an issue in the repository.
 
 **Installation completed at**: April 28, 2026

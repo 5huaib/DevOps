@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# forgeCI Quick Start Script
-# This script starts all services needed for forgeCI
+# PipelineX Quick Start Script
+# This script starts all services needed for PipelineX
 
-echo "🚀 Starting forgeCI Services..."
+echo "🚀 Starting PipelineX Services..."
 echo ""
 
 # Colors for output
