@@ -24,7 +24,7 @@ export default function ManageNodes() {
                 </div>
             </div>
             
-            <p className="text-slate-400 text-sm mb-6 px-1">Add, remove, control and monitor the various nodes that ForgeCI runs jobs on.</p>
+            <p className="text-slate-400 text-sm mb-6 px-1">Add, remove, control and monitor the various nodes that PipelineX runs jobs on.</p>
 
             <div className="bg-slate-950 border border-slate-800 rounded-lg overflow-hidden shadow-2xl shadow-black/60">
                 <div className="overflow-x-auto">

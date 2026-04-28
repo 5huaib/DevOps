@@ -158,7 +158,7 @@ export default function Dashboard() {
                             {projects.length === 0 && (
                                 <tr>
                                     <td colSpan={7} className="px-4 py-12 text-center text-slate-500">
-                                        Welcome to ForgeCI! Please create a new item to get started.
+                                        Welcome to PipelineX! Please create a new item to get started.
                                     </td>
                                 </tr>
                             )}

@@ -53,7 +53,7 @@ export default function BuildHistory() {
         <div className="w-full text-slate-200">
             <div className="mb-6">
                 <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-200 shadow-sm border border-slate-800 px-4 py-1.5 rounded-full inline-block bg-slate-900/50">
-                    Build History of ForgeCI
+                    Build History of PipelineX
                 </h1>
             </div>
 

@@ -16,11 +16,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <header className="bg-slate-900 border-b border-slate-800 h-14 flex items-center px-6 justify-between sticky top-0 z-50 shadow-md">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 cursor-pointer group" onClick={() => navigate('/')}>
-             {/* Jenkins styled Logo, but matching ForgeCI */}
+             {/* Jenkins styled Logo, now PipelineX */}
             <div className="bg-blue-600 p-1.5 rounded flex items-center justify-center group-hover:bg-blue-500 transition-colors">
                 <Hexagon className="h-5 w-5 text-white fill-white/20" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-white group-hover:text-blue-100 transition-colors">ForgeCI</span>
+            <span className="text-xl font-bold tracking-tight text-white group-hover:text-blue-100 transition-colors">PipelineX</span>
           </div>
         </div>
         

@@ -101,7 +101,7 @@ export default function NewItem() {
                             className="w-full max-w-xl bg-slate-950 border border-slate-700 rounded shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 outline-none px-3 py-2 text-slate-100 placeholder-slate-600"
                         />
                         {selectedType === 'freestyle' && (
-                            <p className="text-xs text-slate-500 mt-2">If provided, ForgeCI will check out this codebase before executing your script.</p>
+                            <p className="text-xs text-slate-500 mt-2">If provided, PipelineX will check out this codebase before executing your script.</p>
                         )}
                     </div>
                 )}

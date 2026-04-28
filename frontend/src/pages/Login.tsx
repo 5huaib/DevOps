@@ -27,7 +27,7 @@ export default function Login() {
             <div className="max-w-md w-full">
                 <div className="text-center mb-10">
                     <Hexagon className="mx-auto h-12 w-12 text-blue-500" />
-                    <h2 className="mt-6 text-3xl font-extrabold text-white">Sign in to ForgeCI</h2>
+                    <h2 className="mt-6 text-3xl font-extrabold text-white">Sign in to PipelineX</h2>
                     <p className="mt-2 text-sm text-slate-400">
                         Or <Link to="/register" className="text-blue-500 hover:text-blue-400">create a new account</Link>
                     </p>
