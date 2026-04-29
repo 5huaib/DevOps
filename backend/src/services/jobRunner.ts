@@ -1,9 +1,6 @@
-import { exec } from 'child_process';
-import util from 'util';
 import { prisma } from '../db';
 import { fetchAndParseJenkinsfile } from './jenkinsfileParser';
-
-const execAsync = util.promisify(exec);
+import { workerPool } from './workerPool';
 
 export async function startPipeline(pipelineId: string, project: any, branch: string = 'main') {
     console.log(`\n🚀 [PIPELINE START] Starting pipeline ${pipelineId} for project ${project.name}`);
@@ -22,51 +19,66 @@ export async function startPipeline(pipelineId: string, project: any, branch: st
             stages = await fetchAndParseJenkinsfile(project.repoUrl, branch);
         }
 
+        // Create job records and queue them for execution
+        const jobIds: string[] = [];
         for (const stage of stages) {
-            console.log(`\n▶️ [STAGE] Executing: ${stage.name}`);
-            console.log(`   Command: ${stage.command}`);
             const job = await prisma.job.create({
                 data: {
                     pipelineId,
                     stageName: stage.name,
-                    status: 'running',
+                    status: 'pending',
                     startedAt: new Date()
                 }
             });
+            jobIds.push(job.id);
 
-            try {
-                const { stdout, stderr } = await execAsync(stage.command);
-                const logs = stdout + (stderr ? '\n' + stderr : '');
-                console.log(logs);
-                console.log(`✅ [STAGE SUCCESS] ${stage.name}`);
-
-                await prisma.job.update({
-                    where: { id: job.id },
-                    data: { status: 'success', logs, endedAt: new Date() }
-                });
-            } catch (error: any) {
-                const logs = error.stdout + '\n' + error.stderr + '\n' + error.message;
-                console.error(logs);
-                console.error(`❌ [STAGE FAILED] ${stage.name}`);
-                await prisma.job.update({
-                    where: { id: job.id },
-                    data: { status: 'failed', logs, endedAt: new Date() }
-                });
-
-                await prisma.pipeline.update({
-                    where: { id: pipelineId },
-                    data: { status: 'failed', endedAt: new Date() }
-                });
-                console.log(`💀 [PIPELINE FAILED] Pipeline ${pipelineId} halted.\n`);
-                return; // Stop pipeline on failure
-            }
+            // Queue the job to worker pool
+            workerPool.queueJob({
+                pipelineId,
+                jobId: job.id,
+                stageName: stage.name,
+                command: stage.command,
+                projectName: project.name
+            });
         }
 
-        await prisma.pipeline.update({
-            where: { id: pipelineId },
-            data: { status: 'success', endedAt: new Date() }
+        // Wait for all jobs to complete (poll status)
+        let allComplete = false;
+        let checkInterval: NodeJS.Timeout;
+        
+        await new Promise<void>((resolve) => {
+            checkInterval = setInterval(async () => {
+                const jobs = await prisma.job.findMany({
+                    where: { id: { in: jobIds } }
+                });
+
+                const allDone = jobs.every(j => j.status === 'success' || j.status === 'failed');
+                const anyFailed = jobs.some(j => j.status === 'failed');
+
+                if (allDone) {
+                    clearInterval(checkInterval);
+                    
+                    if (anyFailed) {
+                        await prisma.pipeline.update({
+                            where: { id: pipelineId },
+                            data: { status: 'failed', endedAt: new Date() }
+                        });
+                        console.log(`💀 [PIPELINE FAILED] Pipeline ${pipelineId} - some stages failed.\n`);
+                    } else {
+                        await prisma.pipeline.update({
+                            where: { id: pipelineId },
+                            data: { status: 'success', endedAt: new Date() }
+                        });
+                        console.log(`🎉 [PIPELINE SUCCESS] Pipeline ${pipelineId} completed successfully!\n`);
+                    }
+                    
+                    resolve();
+                }
+            }, 500);
         });
-        console.log(`🎉 [PIPELINE SUCCESS] Pipeline ${pipelineId} completed successfully!\n`);
+
+        // Log worker pool stats
+        workerPool.logStats();
 
     } catch (error) {
         console.error('JobRunner Error:', error);
