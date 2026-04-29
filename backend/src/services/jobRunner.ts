@@ -6,6 +6,7 @@ import { fetchAndParseJenkinsfile } from './jenkinsfileParser';
 const execAsync = util.promisify(exec);
 
 export async function startPipeline(pipelineId: string, project: any, branch: string = 'main') {
+    console.log(`\n🚀 [PIPELINE START] Starting pipeline ${pipelineId} for project ${project.name}`);
     try {
         let stages: Array<{name: string, command: string}> = [];
 
@@ -22,6 +23,8 @@ export async function startPipeline(pipelineId: string, project: any, branch: st
         }
 
         for (const stage of stages) {
+            console.log(`\n▶️ [STAGE] Executing: ${stage.name}`);
+            console.log(`   Command: ${stage.command}`);
             const job = await prisma.job.create({
                 data: {
                     pipelineId,
@@ -33,7 +36,9 @@ export async function startPipeline(pipelineId: string, project: any, branch: st
 
             try {
                 const { stdout, stderr } = await execAsync(stage.command);
-                const logs = stdout + (stderr ? '\nERRORS:\n' + stderr : '');
+                const logs = stdout + (stderr ? '\n' + stderr : '');
+                console.log(logs);
+                console.log(`✅ [STAGE SUCCESS] ${stage.name}`);
 
                 await prisma.job.update({
                     where: { id: job.id },
@@ -41,6 +46,8 @@ export async function startPipeline(pipelineId: string, project: any, branch: st
                 });
             } catch (error: any) {
                 const logs = error.stdout + '\n' + error.stderr + '\n' + error.message;
+                console.error(logs);
+                console.error(`❌ [STAGE FAILED] ${stage.name}`);
                 await prisma.job.update({
                     where: { id: job.id },
                     data: { status: 'failed', logs, endedAt: new Date() }
@@ -50,6 +57,7 @@ export async function startPipeline(pipelineId: string, project: any, branch: st
                     where: { id: pipelineId },
                     data: { status: 'failed', endedAt: new Date() }
                 });
+                console.log(`💀 [PIPELINE FAILED] Pipeline ${pipelineId} halted.\n`);
                 return; // Stop pipeline on failure
             }
         }
@@ -58,6 +66,7 @@ export async function startPipeline(pipelineId: string, project: any, branch: st
             where: { id: pipelineId },
             data: { status: 'success', endedAt: new Date() }
         });
+        console.log(`🎉 [PIPELINE SUCCESS] Pipeline ${pipelineId} completed successfully!\n`);
 
     } catch (error) {
         console.error('JobRunner Error:', error);
@@ -65,5 +74,6 @@ export async function startPipeline(pipelineId: string, project: any, branch: st
             where: { id: pipelineId },
             data: { status: 'failed', endedAt: new Date() }
         });
+        console.log(`💀 [PIPELINE FAILED] Pipeline ${pipelineId} halted due to unexpected error.\n`);
     }
 }

@@ -30,7 +30,10 @@ export default function Dashboard() {
             if (res.data.pipelineId) {
                 navigate(`/pipeline/${res.data.pipelineId}`);
             }
-        } catch (err) {}
+        } catch (err) {
+            console.error("Trigger error:", err);
+            alert("Failed to trigger pipeline. Check console for details.");
+        }
     };
 
     const getMetrics = (pipelines: any[]) => {

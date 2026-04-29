@@ -8,7 +8,7 @@ router.post('/:projectId', async (req, res) => {
     const { projectId } = req.params;
     
     // Parse common Git Webhook standards
-    const branch = req.body.ref?.replace('refs/heads/', '') || req.body.branch || 'main';
+    const branch = req.body?.ref?.replace('refs/heads/', '') || req.body?.branch || 'main';
 
     try {
         const project = await prisma.project.findUnique({ where: { id: projectId } });

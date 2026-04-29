@@ -38,9 +38,6 @@ app.listen(PORT, async () => {
             await prisma.user.create({
                 data: { name: 'Demo User', email: demoEmail, password_hash }
             });
-            console.log('✅ Demo account created: demo@forgeci.com / password123');
-        } else {
-            console.log('✅ Demo account ready: demo@forgeci.com / password123');
         }
     } catch (err) {
         console.error('\n⚠️ DATABASE WARNING: Could not connect or find the User table!');
